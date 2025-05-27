@@ -5,3 +5,5 @@ Browser extension that adds a chatroom keyed to your url so you can chat with th
 Currently available only for Firefox.
 
 https://addons.mozilla.org/en-US/firefox/addon/browse-buddy/
+
+![Screenshot](https://raw.githubusercontent.com/YChiasma/Browse_Buddy/refs/heads/main/Screenshot.png)
