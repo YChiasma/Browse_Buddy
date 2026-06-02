@@ -27,7 +27,7 @@ const unsentMessages = {}; // { url: unsentText }
 
 const messagesDiv = document.getElementById('messages');
 const msgInput = document.getElementById('msgInput');
-const chatroomUrlDiv = document.getElementById('chatroomUrl');
+const chatroomUrlInput = document.getElementById('chatroomUrl');
 
 let chatroomKey = null;
 let fullURL = '';
@@ -149,7 +149,19 @@ async function initChatForCurrentTab() {
 
   fullURL = url;
   chatroomKey = encodeKey(url);
-  chatroomUrlDiv.textContent = decodeKey(chatroomKey);
+  chatroomUrlInput.value = decodeKey(chatroomKey);
+
+  msgInput.value = unsentMessages[fullURL] || '';
+  loadMessages();
+  startPolling();
+}
+
+async function initChatForUrl(url) {
+  await initFirebaseAuth();
+
+  fullURL = url;
+  chatroomKey = encodeKey(url);
+  chatroomUrlInput.value = decodeKey(chatroomKey);
 
   msgInput.value = unsentMessages[fullURL] || '';
   loadMessages();
@@ -167,6 +179,12 @@ msgInput.addEventListener('keypress', e => {
 
 msgInput.addEventListener('input', () => {
   unsentMessages[fullURL] = msgInput.value;
+});
+
+chatroomUrlInput.addEventListener('keypress', e => {
+  if (e.key === 'Enter') {
+    initChatForUrl(chatroomUrlInput.value.trim());
+  }
 });
 
 // Listen for tab changes
