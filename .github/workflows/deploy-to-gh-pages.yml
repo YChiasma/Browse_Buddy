@@ -1,0 +1,35 @@
+name: Copy Browse_Buddy to GitHub Pages Repo
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clone Browse_Buddy repo
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          
+          git clone https://x-access-token:${{ secrets.GH_PAGES_TOKEN }}@github.com/YChiasma/Browse_Buddy.git Browse_Buddy
+
+      - name: Clone GitHub Pages repo
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          
+          git clone https://x-access-token:${{ secrets.GH_PAGES_TOKEN }}@github.com/YChiasma/YChiasma.github.io.git gh-pages
+          
+      - name: Copy Files
+        run: |
+          cp "Browse_Buddy/Browse Buddy/Firefox Extension/sidebar.html" gh-pages/Browse_Buddy/index.html
+          cp "Browse_Buddy/Browse Buddy/Firefox Extension/sidebar.js" gh-pages/Browse_Buddy/sidebar.html
+          
+          cd gh-pages
+          git add .
+          git commit -m "Update Browse_Buddy from Browse_Buddy repo [skip ci]" || echo "No changes to commit"
+          git push
