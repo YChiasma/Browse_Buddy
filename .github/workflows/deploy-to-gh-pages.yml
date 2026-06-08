@@ -27,7 +27,7 @@ jobs:
       - name: Copy Files
         run: |
           cp "Browse_Buddy/Browse Buddy/Firefox Extension/sidebar.html" gh-pages/Browse_Buddy/index.html
-          cp "Browse_Buddy/Browse Buddy/Firefox Extension/sidebar.js" gh-pages/Browse_Buddy/sidebar.html
+          cp "Browse_Buddy/Browse Buddy/Firefox Extension/sidebar.js" gh-pages/Browse_Buddy/sidebar.js
           
           cd gh-pages
           git add .
