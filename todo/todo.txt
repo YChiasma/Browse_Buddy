@@ -1,0 +1,7 @@
+5:29 PM 6/10/2026
+
+Initialize url to the current window url
+
+5:28 PM 6/10/2026
+
+Add `browser` is set conditional
